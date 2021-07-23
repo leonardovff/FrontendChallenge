@@ -1,0 +1,14 @@
+:host {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    div {
+        text-align: center;
+        h2 {
+            color: white;
+            text-align: center;
+        }
+    }
+}
