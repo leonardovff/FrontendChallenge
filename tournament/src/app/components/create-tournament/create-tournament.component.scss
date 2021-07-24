@@ -1,10 +1,18 @@
 :host {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #303030;
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
+    mat-form-field{
+        width: 400px;
+    }
+    p {
+        color: white;
+    }
     div {
+        display: flex;
+        flex-direction: column;
         text-align: center;
         h2 {
             color: white;

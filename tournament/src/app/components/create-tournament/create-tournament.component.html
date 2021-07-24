@@ -1,4 +1,32 @@
 <div>
     <h2>Start Tournament</h2>
-    <button mat-raised-button routerLink="tournament" color="warn">Start</button>
+    <p>
+        Quantity of teams:
+        {{teams.length}}<br> 
+        Quantity of teams allowed:
+        <span *ngFor="let quantity of allowTeamsQuantity">{{quantity}}, </span>
+    </p>
+    <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Teams list</mat-label>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let team of teams" 
+                [selectable]="true"
+                [removable]="true" (removed)="remove(team)">
+                {{team}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New team..."
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+    </mat-form-field>
+    <button  
+        mat-raised-button 
+        [disabled]="!isEnable"
+        (click)="start()"
+        color="warn">
+        Start
+    </button>
 </div>

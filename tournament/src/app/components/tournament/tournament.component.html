@@ -1,1 +1,49 @@
-<p>tournament works!</p>
+<div id="celebration" *ngIf="hasWinner">
+    <h2>The team {{winnerName}} won!!!!!!!!!</h2>
+    <div class="confetti">
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+    </div>
+</div>
+<ul>
+    <li *ngFor="let row of tree; let indexRow = index">
+      <div *ngFor="let team of row; let indexTeam = index">
+        <span *ngIf="team">
+            {{team}}
+        </span>
+        <mat-form-field 
+            *ngIf="!team && tree[indexRow+1][indexTeam*2] && tree[indexRow+1][indexTeam*2+1]" 
+            appearance="fill"
+        >
+            <mat-label>Choose the winner</mat-label>
+            <mat-select (selectionChange)="chooseTheWinner($event)">
+                <mat-option [value]="{ 
+                    team: tree[indexRow+1][indexTeam*2], 
+                    indexRow: indexRow, 
+                    indexTeam: indexTeam 
+                }">
+                    {{tree[indexRow+1][indexTeam*2]}}
+                </mat-option>
+                <mat-option [value]="{ 
+                    team: tree[indexRow+1][indexTeam*2+1],
+                    indexRow: indexRow,
+                    indexTeam: indexTeam 
+                }">
+                    {{tree[indexRow+1][indexTeam*2+1]}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+    </li>
+</ul>
